@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="tr">
+  <texts>
+    <text name="InternalServerError" value="发送请求是网络错误！" />
+    <text name="ValidationError" value="请求无效！" />
+    <text name="AreYouSure" value="请确认？" />
+    <text name="Cancel" value="取消" />
+    <text name="Yes" value="确定" />
+  </texts>
+</localizationDictionary>
