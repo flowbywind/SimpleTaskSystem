@@ -14,7 +14,11 @@
     <text name="AssignTo" value="Assign to" />
     <text name="SelectPerson" value="Select person" />
     <text name="CreateTheTask" value="Create the task" />
+    <text name="ReturnList" value="Return List" />
     <text name="TaskUpdatedMessage" value="Task has been successfully updated." />
     <text name="TaskCreatedMessage" value="Task {0} has been created successfully." />
+    <text name="Save" value="Save" />
+    <text name="Edit" value="Edit" />
+    <text name="View" value="View" />
   </texts>
 </localizationDictionary>

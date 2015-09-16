@@ -73,7 +73,7 @@ namespace SimpleTaskSystem.Tasks
             Logger.Info("Creating a task for input: " + input);
 
             //Creating a new Task entity with given input's properties
-            var task = new Task { Description = input.Description };
+            var task = new Task { Description = input.Description, Id = (long)input.id };
 
             if (input.AssignedPersonId.HasValue)
             {
@@ -81,12 +81,15 @@ namespace SimpleTaskSystem.Tasks
             }
 
             //Saving entity with standard Insert method of repositories.
-            _taskRepository.Insert(task);
+            if (input.id == 0)
+                _taskRepository.Insert(task);
+            else
+                _taskRepository.Update(task);
         }
 
-        public TaskDto GetTaskByID(int id)
+        public TaskDto GetTaskById(GetTaskInput input)
         {
-            var task = _taskRepository.Get(id);
+            var task = _taskRepository.Get(input.id);
             return Mapper.Map<TaskDto>(task);
         }
     }

@@ -20,6 +20,6 @@ namespace SimpleTaskSystem.Tasks
 
         void CreateTask(CreateTaskInput input);
 
-        TaskDto GetTaskByID(int id);
+        TaskDto GetTaskById(GetTaskInput input);
     }
 }

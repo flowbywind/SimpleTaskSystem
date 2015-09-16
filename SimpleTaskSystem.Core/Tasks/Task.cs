@@ -34,6 +34,12 @@ namespace SimpleTaskSystem.Tasks
         public virtual int? AssignedPersonId { get; set; }
 
         /// <summary>
+        /// The title of the task
+        /// <remarks>创建人员(日期):★刘建★(150916 16:21)</remarks>
+        /// </summary>
+        public virtual string Title { get; set; }
+
+        /// <summary>
         /// Describes the task.
         /// </summary>
         public virtual string Description { get; set; }
@@ -44,9 +50,48 @@ namespace SimpleTaskSystem.Tasks
         public virtual DateTime CreationTime { get; set; }
 
         /// <summary>
+        /// CreationUserID
+        /// <remarks>创建人员(日期):★刘建★(150916 16:30)</remarks>
+        /// </summary>
+        public virtual int CreationUserID { get; set; }
+
+        /// <summary>
+        /// the time when this task modify
+        /// <remarks>创建人员(日期):★刘建★(150916 16:29)</remarks>
+        /// </summary>
+        public virtual DateTime ModifyTime { get; set; }
+
+        /// <summary>
+        /// CreationUserID
+        /// <remarks>创建人员(日期):★刘建★(150916 16:30)</remarks>
+        /// </summary>
+        public virtual int ModifyUserID { get; set; }
+
+        /// <summary>
+        /// The time when this task begin
+        /// <remarks>创建人员(日期):★刘建★(150916 16:27)</remarks>
+        /// </summary>
+        public virtual DateTime BeginTime { get; set; }
+
+        /// <summary>
+        /// the time when this task end
+        /// <remarks>创建人员(日期):★刘建★(150916 16:27)</remarks>
+        /// </summary>
+        public virtual DateTime EndTime { get; set; }
+
+        public virtual TaskLevel Level { get; set; }
+
+        /// <summary>
         /// Current state of the task.
         /// </summary>
         public virtual TaskState State { get; set; }
+
+        /// <summary>
+        /// 任务类别
+        /// </summary>
+        public virtual TaskCategory Category { get; set; }
+
+
 
         /// <summary>
         /// Default costructor.
@@ -56,6 +101,8 @@ namespace SimpleTaskSystem.Tasks
         {
             CreationTime = DateTime.Now;
             State = TaskState.Active;
+            Level = TaskLevel.None;
+            Category = TaskCategory.Normal;
         }
     }
 }

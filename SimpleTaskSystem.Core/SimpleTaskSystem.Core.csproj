@@ -87,8 +87,11 @@
     <Compile Include="SimpleTaskSystemCoreModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\ITaskRepository.cs" />
+    <Compile Include="Tasks\RepeatMode.cs" />
     <Compile Include="Tasks\Task.cs" />
+    <Compile Include="Tasks\TaskLevel.cs" />
     <Compile Include="Tasks\TaskState.cs" />
+    <Compile Include="Tasks\TaskCategory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

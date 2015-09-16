@@ -1,14 +1,12 @@
 ﻿<div ng-controller="sts.views.task.detail as vm">
     <form id="ViewTaskForm" role="form" name="viewTaskForm" novalidate>
         <div class="form-group">
-            <label for="TaskDescription">@L("TaskDescription")</label>
-            <textarea id="TaskDescription" ng-model="vm.task.description" class="form-control" rows="3" placeholder="@L("EnterDescriptionHere")" required></textarea>
+            <label for="TaskDescription">@L("TaskDescription")：</label>
+            <div id="TaskDescription">{{vm.task.description}}</div>
         </div>
         <div class="form-group">
-            <label for="TaskAssignedPerson">@L("AssignTo")</label>
-            <select id="TaskAssignedPerson" class="form-control" ng-model="vm.task.assignedPersonId" ng-options="person.id as person.name for person in vm.people">
-                <option value="">@L("SelectPerson")</option>
-            </select>
+            <label for="TaskAssignedPerson">@L("AssignTo")：</label>
+            <div id="TaskAssignedPerson">{{vm.task.assignedPersonName}}</div>
         </div>
         <button ng-click="vm.returnList()" type="button" class="btn btn-primary">@L("ReturnList")</button>
     </form>

@@ -17,5 +17,8 @@
     <text name="ReturnList" value="返回列表" />
     <text name="TaskUpdatedMessage" value="已成功更新任务" />
     <text name="TaskCreatedMessage" value="已成功创建任务{0}" />
+    <text name="Save" value="保存" />
+    <text name="Edit" value="编辑" />
+    <text name="View" value="查看" />
   </texts>
 </localizationDictionary>

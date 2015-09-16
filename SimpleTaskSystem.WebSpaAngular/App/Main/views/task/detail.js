@@ -12,21 +12,10 @@
              };
              vm.localize = abp.localization.getSource('SimpleTaskSystem');
              taskService.getTaskById({
-                  id: $stateParams.id
+                 id: $stateParams.id
              }).success(function (data) {
-                 vm.task = data.task;
+                 vm.task = data;
              });
-             //vm.taskDetail = function () {
-             //    abp.ui.setBusy(
-             //        null,
-             //        taskService.getTaskById({
-             //            id: $stateParams.id
-             //        }).success(function (data) {
-             //            vm.task = data.task;
-             //        })
-             //   );
-             //};
-             //vm.taskDetail();
              vm.returnList = function () {
                  $location.path('/');
              };

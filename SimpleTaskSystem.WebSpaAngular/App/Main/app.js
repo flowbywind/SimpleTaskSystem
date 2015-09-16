@@ -29,6 +29,11 @@
                     templateUrl: '/App/Main/views/task/new.cshtml',
                     menu: 'NewTask' //Matches to name of 'NewTask' menu in SimpleTaskSystemNavigationProvider
                 })
+                .state('edittask', {
+                    url: '/new/:id',
+                    templateUrl: '/App/Main/views/task/new.cshtml',
+                    menu: 'TaskList' //Matches to name of 'NewTask' menu in SimpleTaskSystemNavigationProvider
+                })
                 .state('viewtask', {
                     url: '/detail/:id',
                     templateUrl: '/App/Main/views/task/detail.cshtml',
