@@ -1,25 +1,74 @@
-﻿<div ng-controller="sts.views.task.new as vm">
-    <form id="NewTaskForm" role="form" name="newTaskForm" novalidate>
+﻿<link rel="text/css" href="../../../../Content/bootstrap.min.css" />
+<link rel="text/css" href="../../../../Content/bootstrap-datetimepicker.min.css" />
+<script type="text/javascript" src="../../../../Scripts/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="../../../../Scripts/bootstrap-datetimepicker.zh-CN.js"></script>
+<div ng-controller="sts.views.task.new as vm">
+    <form id="NewTaskForm" role="form" class="form-horizontal" name="newTaskForm" novalidate>
         <div class="form-group">
             <label for="Title">@L("Title")</label>
-            <input id="Title" ng-model="vm.task.title" class="form-control" placeholder="@L("EnterTitleHere")" required/>
+            <input id="Title" ng-model="vm.task.title" class="form-control" placeholder="@L("EnterTitleHere")" required />
         </div>
         <div class="form-group">
             <label for="TaskDescription">@L("TaskDescription")</label>
             <textarea id="TaskDescription" ng-model="vm.task.description" class="form-control" rows="3" placeholder="@L("EnterDescriptionHere")" required></textarea>
         </div>
         <div class="form-group">
-            <label for="Level">@L("Level")</label>
+            <label for="TaskLevel">@L("TaskLevel")</label>
+            <select id="TaskLevel" class="form-control" ng-model="vm.level">
+                <option value=""></option>
+            </select>
         </div>
-
-
+        <div class="form-group">
+            <label for="">@L("BeginTime")</label>
+            <div class="input-group form_datetime date col-md-3" data-date-format="p" data-link-field="dtp_begintime">
+                <input class="form-control" size="16" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+            </div>
+            <input type="hidden" id="dtp_begintime" ng-model="vm.task.begintime" value="" /><br />
+        </div>
+        <div class="form-group">
+            <label for="dtp_endtime">@L("EndTime")</label>
+            <div class="input-group form_datetime date col-md-3" data-date-format="p" data-link-field="dtp_endtime">
+                <input class="form-control" size="16" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+            </div>
+            <input type="hidden" id="dtp_endtime" ng-model="vm.task.endtime" value="" /><br />
+        </div>
+        <div class="form-group">
+            <label for="TaskCategory">@L("TaskCategory")</label>
+        </div>
+        <div class="form-group">
+            <label for="RepeatMode">@L("RepeatMode")</label>
+        </div>
+        <div class="form-group">
+            <label for="Frequency">@L("Frequency")</label>
+        </div>
+        <div class="form-group">
+            <label for="RepeatDays">@L("RepeatDays")</label>
+        </div>
+        <div class="form-group">
+            <label for="RepeatType">@L("RepeatDays")</label>
+        </div>
+        <div class="form-group">
+            <label for="RemindType">@L("RemindType")</label>
+        </div>
+        <div class="form-group">
+            <label for="RemindTime">@L("RemindTime")</label>
+        </div>
         <div class="form-group">
             <label for="TaskAssignedPerson">@L("AssignTo")</label>
             <select id="TaskAssignedPerson" class="form-control" ng-model="vm.task.assignedPersonId" ng-options="person.id as person.name for person in vm.people">
                 <option value="">@L("SelectPerson")</option>
             </select>
         </div>
-        <input type="hidden" value="{{vm.task.id}}"/>
+        <input type="hidden" value="{{vm.task.id}}" />
+        <br />
+        <br />
+        <br />
+        <br />
         <button ng-click="vm.saveTask()" ng-disabled="newTaskForm.$invalid" type="submit" class="btn btn-primary">@L("Save")</button>
+        <button ng-click="vm.returnList()" type="button" class="btn btn-primary">@L("ReturnList")</button>
     </form>
 </div>

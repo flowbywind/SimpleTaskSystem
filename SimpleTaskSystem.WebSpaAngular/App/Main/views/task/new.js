@@ -1,26 +1,48 @@
 ﻿(function () {
     var app = angular.module('app');
-
     var controllerId = 'sts.views.task.new';
     app.controller(controllerId, [
-        '$scope', '$location', 'abp.services.tasksystem.task', 'abp.services.tasksystem.person', '$stateParams',
-        function ($scope, $location, taskService, personService, $stateParams) {
+        '$scope', '$location', 'abp.services.tasksystem.task',
+        'abp.services.tasksystem.enum',
+         'abp.services.tasksystem.person',
+        '$stateParams',
+        function ($scope, $location, taskService,
+            enumService,
+            personService,
+            $stateParams) {
             var vm = this;
             vm.localize = abp.localization.getSource('SimpleTaskSystem');
             vm.task = {
                 id: 0,
-                title:"",
+                title: "",
                 description: '',
+                starttime: '',
+                endtime: '',
                 assignedPersonId: null
             };
 
             var localize = abp.localization.getSource('SimpleTaskSystem');
 
             vm.people = []; //TODO: Move Person combo to a directive?
-            vm.level = [];
-
             personService.getAllPeople().success(function (data) {
                 vm.people = data.people;
+            });
+
+            vm.level = [];
+            enumService.getSelectList().success(function (data) {
+                vm.level = data;
+            });
+
+            $('.form_datetime').datetimepicker({
+                language: 'zh-CN',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1,
+                format: "yyyy-mm-dd hh:ii:ss"
             });
 
             if ($stateParams.id > 0)
@@ -45,6 +67,9 @@
 
                     })
                 );
+            };
+            vm.returnList = function () {
+                $location.path('/');
             };
         }
     ]);

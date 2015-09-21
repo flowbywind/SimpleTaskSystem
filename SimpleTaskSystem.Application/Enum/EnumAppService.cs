@@ -36,13 +36,15 @@ namespace SimpleTaskSystem.Enum
         /// </summary>
         /// <param name="enumType"></param>
         /// <returns></returns>
-        public string GetSelectList(Type enumType)
+        public string GetSelectList()
         {
             Hashtable ht = new Hashtable();
-            foreach (object e in System.Enum.GetValues(enumType))
+            Type type = typeof(TaskLevel);
+            foreach (object e in System.Enum.GetValues(type))
             {
-                ht.Add("Text", GetEnumDescription(e));
-                ht.Add("Value", (Convert.ToInt32(e)).ToString());
+                ht.Add((Convert.ToInt32(e)).ToString(), GetEnumDescription(e));
+                //ht.Add("Text", GetEnumDescription(e));
+                //ht.Add("Value", (Convert.ToInt32(e)).ToString());
             }
             return JsonHelper.SerializeObject(ht);
         }

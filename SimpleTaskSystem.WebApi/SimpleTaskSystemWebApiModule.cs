@@ -21,7 +21,7 @@ namespace SimpleTaskSystem
             //Thus, 'web api layer' is created automatically by ABP.
 
             DynamicApiControllerBuilder
-                .ForAll<IApplicationService>(Assembly.GetAssembly(typeof (SimpleTaskSystemApplicationModule)), "tasksystem")
+                .ForAll<IApplicationService>(Assembly.GetAssembly(typeof(SimpleTaskSystemApplicationModule)), "tasksystem")
                 .Build();
         }
     }

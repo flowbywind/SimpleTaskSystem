@@ -22,6 +22,15 @@
     <text name="Save" value="保存" />
     <text name="Edit" value="编辑" />
     <text name="View" value="查看" />
-    <text name="Level" value="任务级别" />
+    <text name="TaskLevel" value="任务级别" />
+    <text name="BeginTime" value="开始时间" />
+    <text name="EndTime" value="截止时间" />
+    <text name="TaskCategory" value="任务类别" />
+    <text name="RepeatMode" value="重复模式" />
+    <text name="Frequency" value="重复频率" />
+    <text name="RepeatDays" value="重复日" />
+    <text name="RepeatType" value="重复方式" />
+    <text name="RemindType" value="提醒方式" />
+    <text name="RemindTime" value="提醒时间" />
   </texts>
 </localizationDictionary>
