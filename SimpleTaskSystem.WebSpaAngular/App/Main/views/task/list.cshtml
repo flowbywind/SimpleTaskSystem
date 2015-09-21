@@ -23,8 +23,12 @@
     <ul class="list-group" ng-repeat="task in vm.tasks">
         <div class="list-group-item">
             <span class="task-state-icon glyphicon" ng-click="vm.changeTaskState(task)" ng-class="{'glyphicon-minus': task.state == 1, 'glyphicon-ok': task.state == 2}"></span>
-            <span title="{{task.description}}" ng-class="{'task-description-active': task.state == 1, 'task-description-completed': task.state == 2 }">
-                <a ng-href="#/detail/{{task.id}}" href="javascript:void(0)"> {{task.description|subString:'35'}}</a>
+            <span title="{{task.title}}" ng-class="{'task-description-active': task.state == 1, 'task-description-completed': task.state == 2 }">
+                <a ng-href="#/detail/{{task.id}}" href="javascript:void(0)"> {{task.title|subString:'35'}}</a>
+            </span>
+            <br/>
+            <span title="{{task.description}}" style="margin-left: 20px;">
+                <a ng-href="#/detail/{{task.id}}" href="javascript:void(0)"> {{task.description|subString:'100'}}</a>
             </span>
             <br />
             <span ng-show="task.assignedPersonId">

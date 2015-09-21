@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using SimpleTaskSystem.People;
+using SimpleTaskSystem.Enum;
 
 namespace SimpleTaskSystem.Tasks
 {
@@ -18,7 +20,7 @@ namespace SimpleTaskSystem.Tasks
     /// Also, this helps us to use standard naming and functionality for 'creation time' of entities.
     /// </summary>
     [Table("StsTasks")]
-    public class Task : Entity<long>, IHasCreationTime
+    public class Task : Entity, IHasCreationTime
     {
         /// <summary>
         /// A reference (navigation property) to assigned <see cref="Person"/> for this task.
@@ -37,11 +39,13 @@ namespace SimpleTaskSystem.Tasks
         /// The title of the task
         /// <remarks>创建人员(日期):★刘建★(150916 16:21)</remarks>
         /// </summary>
+        [MaxLength(50)]
         public virtual string Title { get; set; }
 
         /// <summary>
         /// Describes the task.
         /// </summary>
+        [MaxLength(200)]
         public virtual string Description { get; set; }
 
         /// <summary>
@@ -79,6 +83,9 @@ namespace SimpleTaskSystem.Tasks
         /// </summary>
         public virtual DateTime EndTime { get; set; }
 
+        /// <summary>
+        /// 任务级别
+        /// </summary>
         public virtual TaskLevel Level { get; set; }
 
         /// <summary>
@@ -91,7 +98,36 @@ namespace SimpleTaskSystem.Tasks
         /// </summary>
         public virtual TaskCategory Category { get; set; }
 
+        /// <summary>
+        /// 重复模式
+        /// </summary>
+        public virtual RepeatMode Mode { get; set; }
 
+        /// <summary>
+        /// 频率
+        /// </summary>
+        public virtual int Frequency { get; set; }
+
+        /// <summary>
+        /// 重复日
+        /// </summary>
+        [MaxLength(50)]
+        public virtual string RepeatDays { get; set; }
+
+        /// <summary>
+        /// 按月时分重复方式
+        /// </summary>
+        public virtual RepeatType RepeatType { get; set; }
+        /// <summary>
+        /// 提醒方式
+        /// </summary>
+        public virtual RemindType RemindType { get; set; }
+
+        /// <summary>
+        /// 提醒时间，提前时间，或者提醒具体时间
+        /// </summary>
+        [MaxLength(50)]
+        public virtual string RemindTime { get; set; }
 
         /// <summary>
         /// Default costructor.
@@ -103,6 +139,8 @@ namespace SimpleTaskSystem.Tasks
             State = TaskState.Active;
             Level = TaskLevel.None;
             Category = TaskCategory.Normal;
+            RepeatType = RepeatType.Zero;
+            RemindType = RemindType.Minute;
         }
     }
 }

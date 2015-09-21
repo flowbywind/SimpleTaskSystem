@@ -9,6 +9,7 @@
             vm.localize = abp.localization.getSource('SimpleTaskSystem');
             vm.task = {
                 id: 0,
+                title:"",
                 description: '',
                 assignedPersonId: null
             };
@@ -16,10 +17,12 @@
             var localize = abp.localization.getSource('SimpleTaskSystem');
 
             vm.people = []; //TODO: Move Person combo to a directive?
+            vm.level = [];
 
             personService.getAllPeople().success(function (data) {
                 vm.people = data.people;
             });
+
             if ($stateParams.id > 0)
                 taskService.getTaskById({
                     id: $stateParams.id

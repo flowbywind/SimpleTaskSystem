@@ -6,12 +6,13 @@ namespace SimpleTaskSystem.Tasks.Dtos
     /// <summary>
     /// A DTO class that can be used in various application service methods when needed to send/receive Task objects.
     /// </summary>
-    public class TaskDto : EntityDto<long>
+    public class TaskDto : EntityDto<int>
     {
         public int? AssignedPersonId { get; set; }
 
         public string AssignedPersonName { get; set; }
 
+        public string Title { get; set; }
         public string Description { get; set; }
 
         public DateTime CreationTime { get; set; }

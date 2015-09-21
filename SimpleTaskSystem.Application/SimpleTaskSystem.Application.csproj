@@ -95,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DtoMappings.cs" />
+    <Compile Include="Enum\EnumAppService.cs" />
+    <Compile Include="Enum\IEnumAppService.cs" />
     <Compile Include="People\Dtos\GetAllPeopleOutput.cs" />
     <Compile Include="People\Dtos\PersonDto.cs" />
     <Compile Include="People\IPersonAppService.cs" />
@@ -119,6 +121,10 @@
     <ProjectReference Include="..\SimpleTaskSystem.Core\SimpleTaskSystem.Core.csproj">
       <Project>{17298EA0-AF73-4F30-B6F1-2066100D7D74}</Project>
       <Name>SimpleTaskSystem.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{88364b63-e733-4429-a228-9902c66000f6}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

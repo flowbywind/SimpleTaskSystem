@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using SimpleTaskSystem.Enum;
 
 namespace SimpleTaskSystem.Tasks.Dtos
 {

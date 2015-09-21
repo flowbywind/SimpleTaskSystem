@@ -5,8 +5,10 @@ namespace SimpleTaskSystem.Tasks.Dtos
 {
     public class CreateTaskInput : IInputDto
     {
-        public int? id { get; set; }
+        public int id { get; set; }
         public int? AssignedPersonId { get; set; }
+        [Required]
+        public string Title { get; set; }
 
         [Required]
         public string Description { get; set; }

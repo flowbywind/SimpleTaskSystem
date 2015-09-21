@@ -9,6 +9,8 @@
     <text name="AllTasks" value="全部任务" />
     <text name="ActiveTasks" value="进行中任务" />
     <text name="CompletedTasks" value="完成的任务" />
+    <text name="Title" value="任务标题" />
+    <text name="EnterTitleHere" value="任务标题" />
     <text name="TaskDescription" value="任务描述" />
     <text name="EnterDescriptionHere" value="任务描述" />
     <text name="AssignTo" value="指派给" />
@@ -20,5 +22,6 @@
     <text name="Save" value="保存" />
     <text name="Edit" value="编辑" />
     <text name="View" value="查看" />
+    <text name="Level" value="任务级别" />
   </texts>
 </localizationDictionary>

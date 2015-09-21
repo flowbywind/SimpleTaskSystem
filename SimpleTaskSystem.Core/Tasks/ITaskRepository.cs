@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Abp.Domain.Repositories;
+using SimpleTaskSystem.Enum;
 
 namespace SimpleTaskSystem.Tasks
 {
@@ -8,7 +9,7 @@ namespace SimpleTaskSystem.Tasks
     /// 
     /// Extends <see cref="IRepository{TEntity, TPrimaryKey}"/> to inherit base repository functionality. 
     /// </summary>
-    public interface ITaskRepository : IRepository<Task, long>
+    public interface ITaskRepository : IRepository<Task, int>
     {
         /// <summary>
         /// Gets all tasks with <see cref="Task.AssignedPerson"/> is retrived (Include for EntityFramework, Fetch for NHibernate)

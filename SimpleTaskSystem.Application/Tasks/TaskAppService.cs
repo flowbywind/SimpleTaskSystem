@@ -73,7 +73,11 @@ namespace SimpleTaskSystem.Tasks
             Logger.Info("Creating a task for input: " + input);
 
             //Creating a new Task entity with given input's properties
-            var task = new Task { Description = input.Description, Id = (long)input.id };
+            var task = new Task {
+                Title = input.Title,
+                Description = input.Description, 
+                Id = input.id 
+            };
 
             if (input.AssignedPersonId.HasValue)
             {

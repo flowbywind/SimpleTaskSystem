@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.Runtime.Validation;
+using SimpleTaskSystem.Enum;
 
 namespace SimpleTaskSystem.Tasks.Dtos
 {
@@ -14,7 +15,7 @@ namespace SimpleTaskSystem.Tasks.Dtos
     public class UpdateTaskInput : IInputDto, ICustomValidate
     {
         [Range(1, long.MaxValue)] //Data annotation attributes work as expected.
-        public long TaskId { get; set; }
+        public int TaskId { get; set; }
 
         public int? AssignedPersonId { get; set; }
 

@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using Abp.EntityFramework;
+using SimpleTaskSystem.Enum;
 using SimpleTaskSystem.Tasks;
 
 namespace SimpleTaskSystem.EntityFramework.Repositories
@@ -9,7 +10,7 @@ namespace SimpleTaskSystem.EntityFramework.Repositories
     /// <summary>
     /// Implements <see cref="ITaskRepository"/> for EntityFramework ORM.
     /// </summary>
-    public class TaskRepository : SimpleTaskSystemRepositoryBase<Task, long>, ITaskRepository
+    public class TaskRepository : SimpleTaskSystemRepositoryBase<Task, int>, ITaskRepository
     {
         public TaskRepository(IDbContextProvider<SimpleTaskSystemDbContext> dbContextProvider)
             : base(dbContextProvider)
