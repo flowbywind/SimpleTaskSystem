@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using SimpleTaskSystem.Enum.Dtos;
 
 namespace SimpleTaskSystem.Enum
 {
@@ -6,6 +7,6 @@ namespace SimpleTaskSystem.Enum
     {
         //string GetEnumDescription(object e);
 
-        string GetSelectList();
+        GetEnumsOutput GetSelectList(GetEnumsInput input);
     }
 }

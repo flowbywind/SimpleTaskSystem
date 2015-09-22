@@ -14,13 +14,12 @@
         </div>
         <div class="form-group">
             <label for="TaskLevel">@L("TaskLevel")</label>
-            <select id="TaskLevel" class="form-control" ng-model="vm.level">
-                <option value=""></option>
-            </select>
+            <select id="TaskLevel" class="form-control" ng-model="vm.level[0].value"
+                    ng-options="x.value as x.text for x in vm.level"></select>
         </div>
         <div class="form-group">
-            <label for="">@L("BeginTime")</label>
-            <div class="input-group form_datetime date col-md-3" data-date-format="p" data-link-field="dtp_begintime">
+            <label for="dtp_begintime">@L("BeginTime")</label>
+            <div class="input-group date col-md-3" data-date-format="p" data-link-field="dtp_begintime">
                 <input class="form-control" size="16" type="text" value="" readonly>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -29,7 +28,7 @@
         </div>
         <div class="form-group">
             <label for="dtp_endtime">@L("EndTime")</label>
-            <div class="input-group form_datetime date col-md-3" data-date-format="p" data-link-field="dtp_endtime">
+            <div class="input-group date col-md-3" data-date-format="p" data-link-field="dtp_endtime">
                 <input class="form-control" size="16" type="text" value="" readonly>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -38,24 +37,40 @@
         </div>
         <div class="form-group">
             <label for="TaskCategory">@L("TaskCategory")</label>
+            <select id="TaskCategory" class="form-control" ng-model="vm.category[0].value"
+                    ng-options="x.value as x.text for x in vm.category"></select>
         </div>
         <div class="form-group">
             <label for="RepeatMode">@L("RepeatMode")</label>
+            <select id="RepeatMode" class="form-control" ng-model="vm.repeatmode[0].value"
+                    ng-options="x.value as x.text for x in vm.repeatmode"></select>
         </div>
         <div class="form-group">
             <label for="Frequency">@L("Frequency")</label>
+            <input id="Frequency" ng-model="vm.task.frequency" class="form-control" placeholder="@L("Frequency")" />
         </div>
         <div class="form-group">
             <label for="RepeatDays">@L("RepeatDays")</label>
+            <input id="RepeatDays" ng-model="vm.task.repeatdays" class="form-control" placeholder="@L("RepeatDays")" />
         </div>
         <div class="form-group">
-            <label for="RepeatType">@L("RepeatDays")</label>
+            <label for="RepeatType">@L("RepeatType")</label>
+            <select id="RepeatType" class="form-control" ng-model="vm.repeattype[0].value"
+                    ng-options="x.value as x.text for x in vm.repeattype"></select>
         </div>
         <div class="form-group">
             <label for="RemindType">@L("RemindType")</label>
+            <select id="RemindType" class="form-control" ng-model="vm.remindtype[0].value"
+                    ng-options="x.value as x.text for x in vm.remindtype"></select>
         </div>
         <div class="form-group">
-            <label for="RemindTime">@L("RemindTime")</label>
+            <label for="dtp_remindtime">@L("RemindTime")</label>
+            <div class="input-group date col-md-3" data-date-format="p" data-link-field="dtp_remindtime">
+                <input class="form-control" size="16" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+            </div>
+            <input type="hidden" id="dtp_remindtime" ng-model="vm.task.remindtime" value="" /><br />
         </div>
         <div class="form-group">
             <label for="TaskAssignedPerson">@L("AssignTo")</label>
@@ -67,8 +82,10 @@
         <br />
         <br />
         <br />
-        <br />
-        <button ng-click="vm.saveTask()" ng-disabled="newTaskForm.$invalid" type="submit" class="btn btn-primary">@L("Save")</button>
-        <button ng-click="vm.returnList()" type="button" class="btn btn-primary">@L("ReturnList")</button>
+        <div class="navbar-fixed-bottom text-center" style="background-color: #f5f5f5; border: 1px solid #d3d3d3; padding: 5px; margin: 0 89px;">
+            <button ng-click="vm.task.id==0?vm.saveTask():vm.updateTask()" ng-disabled="newTaskForm.$invalid" type="submit" class="btn btn-primary">@L("Save")</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button ng-click="vm.returnList()" type="button" class="btn btn-primary">@L("ReturnList")</button>
+        </div>
     </form>
 </div>

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using SimpleTaskSystem.Enum.Dtos;
 using Utility;
 
 namespace SimpleTaskSystem.Enum
@@ -34,19 +37,25 @@ namespace SimpleTaskSystem.Enum
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="enumType"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public string GetSelectList()
+        public GetEnumsOutput GetSelectList(GetEnumsInput input)
         {
-            Hashtable ht = new Hashtable();
-            Type type = typeof(TaskLevel);
-            foreach (object e in System.Enum.GetValues(type))
-            {
-                ht.Add((Convert.ToInt32(e)).ToString(), GetEnumDescription(e));
-                //ht.Add("Text", GetEnumDescription(e));
-                //ht.Add("Value", (Convert.ToInt32(e)).ToString());
-            }
-            return JsonHelper.SerializeObject(ht);
+            var fullName = "SimpleTaskSystem.Enum." + input.enumType;
+            const string assemblyName = "SimpleTaskSystem.Core";
+            string path = fullName + "," + assemblyName;
+            Type type = Type.GetType(path);
+            if (type == null) return null;
+            List<EnumDto> Enums = (from object e in System.Enum.GetValues(type)
+                                   let Text = GetEnumDescription(e)
+                                   where !string.IsNullOrEmpty(Text)
+                                   select new EnumDto
+                                   {
+                                       Value = Convert.ToInt32(e),
+                                       Text = Text
+                                   }).ToList();
+            GetEnumsOutput getEnums = new GetEnumsOutput { Enums = Enums };
+            return getEnums;
         }
     }
 }

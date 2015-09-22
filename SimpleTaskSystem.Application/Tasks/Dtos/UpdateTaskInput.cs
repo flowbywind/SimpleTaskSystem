@@ -15,7 +15,7 @@ namespace SimpleTaskSystem.Tasks.Dtos
     public class UpdateTaskInput : IInputDto, ICustomValidate
     {
         [Range(1, long.MaxValue)] //Data annotation attributes work as expected.
-        public int TaskId { get; set; }
+        public int Id { get; set; }
 
         public int? AssignedPersonId { get; set; }
 
@@ -32,7 +32,7 @@ namespace SimpleTaskSystem.Tasks.Dtos
 
         public override string ToString()
         {
-            return string.Format("[UpdateTaskInput > TaskId = {0}, AssignedPersonId = {1}, State = {2}]", TaskId, AssignedPersonId, State);
+            return string.Format("[UpdateTaskInput > TaskId = {0}, AssignedPersonId = {1}, State = {2}]", Id, AssignedPersonId, State);
         }
     }
 }

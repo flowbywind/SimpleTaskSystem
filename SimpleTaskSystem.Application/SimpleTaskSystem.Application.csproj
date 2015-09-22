@@ -95,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DtoMappings.cs" />
+    <Compile Include="Enum\Dtos\EnumDto.cs" />
+    <Compile Include="Enum\Dtos\GetEnumsInput.cs" />
+    <Compile Include="Enum\Dtos\GetEnumsOutput.cs" />
     <Compile Include="Enum\EnumAppService.cs" />
     <Compile Include="Enum\IEnumAppService.cs" />
     <Compile Include="People\Dtos\GetAllPeopleOutput.cs" />

@@ -48,7 +48,7 @@ namespace SimpleTaskSystem.Tasks
             Logger.Info("Updating a task for input: " + input);
 
             //Retrieving a task entity with given id using standard Get method of repositories.
-            var task = _taskRepository.Get(input.TaskId);
+            var task = _taskRepository.Get(input.Id);
 
             //Updating changed properties of the retrieved task entity.
 
@@ -61,7 +61,7 @@ namespace SimpleTaskSystem.Tasks
             {
                 task.AssignedPerson = _personRepository.Load(input.AssignedPersonId.Value);
             }
-
+            _taskRepository.Update(task);
             //We even do not call Update method of the repository.
             //Because an application service method is a 'unit of work' scope as default.
             //ABP automatically saves all changes when a 'unit of work' scope ends (without any exception).
@@ -73,10 +73,11 @@ namespace SimpleTaskSystem.Tasks
             Logger.Info("Creating a task for input: " + input);
 
             //Creating a new Task entity with given input's properties
-            var task = new Task {
+            var task = new Task
+            {
                 Title = input.Title,
-                Description = input.Description, 
-                Id = input.id 
+                Description = input.Description,
+                Id = input.id
             };
 
             if (input.AssignedPersonId.HasValue)
@@ -85,10 +86,8 @@ namespace SimpleTaskSystem.Tasks
             }
 
             //Saving entity with standard Insert method of repositories.
-            if (input.id == 0)
-                _taskRepository.Insert(task);
-            else
-                _taskRepository.Update(task);
+            _taskRepository.Insert(task);
+
         }
 
         public TaskDto GetTaskById(GetTaskInput input)

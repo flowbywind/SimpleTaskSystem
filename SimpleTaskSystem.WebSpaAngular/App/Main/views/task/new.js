@@ -16,8 +16,16 @@
                 id: 0,
                 title: "",
                 description: '',
-                starttime: '',
+                tasklevel: '',
+                begintime: '',
                 endtime: '',
+                taskcategory: '',
+                repeatmode: '',
+                frequency: '',
+                repeatdays: '',
+                repeattype: '',
+                remindtype: '',
+                remindtime: '',
                 assignedPersonId: null
             };
 
@@ -28,12 +36,38 @@
                 vm.people = data.people;
             });
 
-            vm.level = [];
-            enumService.getSelectList().success(function (data) {
-                vm.level = data;
+            //任务级别
+            enumService.getSelectList({
+                enumType: "TaskLevel"
+            }).success(function (data) {
+                vm.level = data.enums;
+            });
+            //任务类别
+            enumService.getSelectList({
+                enumType: "TaskCategory"
+            }).success(function (data) {
+                vm.category = data.enums;
+            });
+            //重复模式
+            enumService.getSelectList({
+                enumType: "RepeatMode"
+            }).success(function (data) {
+                vm.repeatmode = data.enums;
+            });
+            //重复方式
+            enumService.getSelectList({
+                enumType: "RepeatType"
+            }).success(function (data) {
+                vm.repeattype = data.enums;
+            });
+            //提醒方式
+            enumService.getSelectList({
+                enumType: "RemindType"
+            }).success(function (data) {
+                vm.remindtype = data.enums;
             });
 
-            $('.form_datetime').datetimepicker({
+            $('.date').datetimepicker({
                 language: 'zh-CN',
                 weekStart: 1,
                 todayBtn: 1,
@@ -58,11 +92,19 @@
                     taskService.createTask(
                         vm.task
                     ).success(function () {
-                        if (vm.task.id == 0) {
-                            abp.notify.info(abp.utils.formatString(localize("TaskCreatedMessage"), vm.task.description));
-                        } else {
-                            abp.notify.info(vm.localize('TaskUpdatedMessage'));
-                        }
+                        abp.notify.info(abp.utils.formatString(localize("TaskCreatedMessage"), vm.task.description));
+                        $location.path('/');
+
+                    })
+                );
+            };
+            vm.updateTask = function () {
+                abp.ui.setBusy(
+                    null,
+                    taskService.updateTask(
+                        vm.task
+                    ).success(function () {
+                        abp.notify.info(vm.localize('TaskUpdatedMessage'));
                         $location.path('/');
 
                     })
