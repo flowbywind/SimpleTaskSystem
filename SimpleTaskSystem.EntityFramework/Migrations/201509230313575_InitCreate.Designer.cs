@@ -13,7 +13,7 @@ namespace SimpleTaskSystem.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509170800208_InitCreate"; }
+            get { return "201509230313575_InitCreate"; }
         }
         
         string IMigrationMetadata.Source

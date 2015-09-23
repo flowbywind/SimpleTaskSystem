@@ -34,7 +34,7 @@ namespace SimpleTaskSystem.EntityFramework.Repositories
 
             if (state.HasValue)
             {
-                query = query.Where(task => task.State == state);
+                query = query.Where(task => task.TaskState == state);
             }
 
             return query

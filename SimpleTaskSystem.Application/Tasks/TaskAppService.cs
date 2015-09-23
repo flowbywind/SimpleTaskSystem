@@ -4,6 +4,7 @@ using Abp.Domain.Repositories;
 using AutoMapper;
 using SimpleTaskSystem.People;
 using SimpleTaskSystem.Tasks.Dtos;
+using System;
 
 namespace SimpleTaskSystem.Tasks
 {
@@ -33,7 +34,7 @@ namespace SimpleTaskSystem.Tasks
         public GetTasksOutput GetTasks(GetTasksInput input)
         {
             //Called specific GetAllWithPeople method of task repository.
-            var tasks = _taskRepository.GetAllWithPeople(input.AssignedPersonId, input.State);
+            var tasks = _taskRepository.GetAllWithPeople(input.AssignedPersonId, input.TaskState);
 
             //Used AutoMapper to automatically convert List<Task> to List<TaskDto>.
             return new GetTasksOutput
@@ -42,7 +43,7 @@ namespace SimpleTaskSystem.Tasks
                    };
         }
 
-        public void UpdateTask(UpdateTaskInput input)
+        public void UpdateTaskState(UpdateTaskStateInput input)
         {
             //We can use Logger, it's defined in ApplicationService base class.
             Logger.Info("Updating a task for input: " + input);
@@ -52,16 +53,16 @@ namespace SimpleTaskSystem.Tasks
 
             //Updating changed properties of the retrieved task entity.
 
-            if (input.State.HasValue)
+            if (input.taskState.HasValue)
             {
-                task.State = input.State.Value;
+                task.TaskState = input.taskState.Value;
             }
 
             if (input.AssignedPersonId.HasValue)
             {
                 task.AssignedPerson = _personRepository.Load(input.AssignedPersonId.Value);
             }
-            _taskRepository.Update(task);
+            //_taskRepository.Update(task);
             //We even do not call Update method of the repository.
             //Because an application service method is a 'unit of work' scope as default.
             //ABP automatically saves all changes when a 'unit of work' scope ends (without any exception).
@@ -72,13 +73,7 @@ namespace SimpleTaskSystem.Tasks
             //We can use Logger, it's defined in ApplicationService class.
             Logger.Info("Creating a task for input: " + input);
 
-            //Creating a new Task entity with given input's properties
-            var task = new Task
-            {
-                Title = input.Title,
-                Description = input.Description,
-                Id = input.id
-            };
+            var task = Mapper.Map<Task>(input);
 
             if (input.AssignedPersonId.HasValue)
             {
@@ -87,13 +82,39 @@ namespace SimpleTaskSystem.Tasks
 
             //Saving entity with standard Insert method of repositories.
             _taskRepository.Insert(task);
-
         }
 
         public TaskDto GetTaskById(GetTaskInput input)
         {
             var task = _taskRepository.Get(input.id);
             return Mapper.Map<TaskDto>(task);
+        }
+
+        public void UpdateTask(UpdateTaskInput input)
+        {
+            //We can use Logger, it's defined in ApplicationService class.
+            Logger.Info("Updating a task for input: " + input);
+            var task = _taskRepository.Get(input.Id);
+            task.Title = input.Title;
+            task.Description = input.Description;
+            task.TaskState = input.TaskState;
+            task.ModifyTime = DateTime.Now;
+            task.ModifyUserID = input.ModifyUserID;
+            task.BeginTime = input.BeginTime;
+            task.EndTime = input.EndTime;
+            task.TaskLevel = input.TaskLevel;
+            task.TaskCategory = input.TaskCategory;
+            task.RepeatMode = input.RepeatMode;
+            task.Frequency = input.Frequency;
+            task.RepeatDays = input.RepeatDays;
+            task.RepeatType = input.RepeatType;
+            task.RemindType = input.RemindType;
+            task.RemindTime = input.RemindTime;
+            task.ModifyUserID = input.ModifyUserID;
+            if (input.AssignedPersonId.HasValue)
+            {
+                task.AssignedPerson = _personRepository.Load(input.AssignedPersonId.Value);
+            }
         }
     }
 }

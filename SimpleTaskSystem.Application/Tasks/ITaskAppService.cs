@@ -16,10 +16,12 @@ namespace SimpleTaskSystem.Tasks
     {
         GetTasksOutput GetTasks(GetTasksInput input);
 
-        void UpdateTask(UpdateTaskInput input);
+        void UpdateTaskState(UpdateTaskStateInput input);
 
         void CreateTask(CreateTaskInput input);
 
         TaskDto GetTaskById(GetTaskInput input);
+
+        void UpdateTask(UpdateTaskInput input);
     }
 }

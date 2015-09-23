@@ -86,22 +86,22 @@ namespace SimpleTaskSystem.Tasks
         /// <summary>
         /// 任务级别
         /// </summary>
-        public virtual TaskLevel Level { get; set; }
+        public virtual TaskLevel TaskLevel { get; set; }
 
         /// <summary>
         /// Current state of the task.
         /// </summary>
-        public virtual TaskState State { get; set; }
+        public virtual TaskState TaskState { get; set; }
 
         /// <summary>
         /// 任务类别
         /// </summary>
-        public virtual TaskCategory Category { get; set; }
+        public virtual TaskCategory TaskCategory { get; set; }
 
         /// <summary>
         /// 重复模式
         /// </summary>
-        public virtual RepeatMode Mode { get; set; }
+        public virtual RepeatMode RepeatMode { get; set; }
 
         /// <summary>
         /// 频率
@@ -136,9 +136,9 @@ namespace SimpleTaskSystem.Tasks
         public Task()
         {
             CreationTime = DateTime.Now;
-            State = TaskState.Active;
-            Level = TaskLevel.None;
-            Category = TaskCategory.Normal;
+            TaskState = TaskState.Active;
+            TaskLevel = TaskLevel.None;
+            TaskCategory = TaskCategory.Normal;
             RepeatType = RepeatType.Zero;
             RemindType = RemindType.Minute;
         }

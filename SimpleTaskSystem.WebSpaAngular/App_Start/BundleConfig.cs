@@ -14,6 +14,8 @@ namespace SimpleTaskSystem.WebSpaAngular
             bundles.Add(
                 new StyleBundle("~/Bundles/App/vendor/css")
                     .Include(
+                        "~/Content/bootstrap.min.css",
+                        "~/Content/bootstrap-datetimepicker.min.css",
                         "~/Content/themes/base/all.css",
                         "~/Content/bootstrap-cosmo.min.css",
                         "~/Content/toastr.min.css",
@@ -29,14 +31,10 @@ namespace SimpleTaskSystem.WebSpaAngular
                     .Include(
                         "~/Abp/Framework/scripts/utils/ie10fix.js",
                         "~/Scripts/json2.min.js",
-
                         "~/Scripts/modernizr-2.8.3.js",
-                        
                         "~/Scripts/jquery-2.1.4.min.js",
                         "~/Scripts/jquery-ui-1.11.4.min.js",
-
                         "~/Scripts/bootstrap.min.js",
-
                         "~/Scripts/moment-with-locales.min.js",
                         "~/Scripts/jquery.blockUI.js",
                         "~/Scripts/toastr.min.js",
@@ -51,6 +49,8 @@ namespace SimpleTaskSystem.WebSpaAngular
                         "~/Scripts/angular-ui/ui-bootstrap.min.js",
                         "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
                         "~/Scripts/angular-ui/ui-utils.min.js",
+                        "~/Scripts/bootstrap-datetimepicker.js",
+                        "~/Scripts/bootstrap-datetimepicker.zh-CN.js",
 
                         "~/Abp/Framework/scripts/abp.js",
                         "~/Abp/Framework/scripts/libs/abp.jquery.js",

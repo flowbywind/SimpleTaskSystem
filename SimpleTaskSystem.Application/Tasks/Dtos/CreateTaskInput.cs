@@ -46,19 +46,16 @@ namespace SimpleTaskSystem.Tasks.Dtos
         /// <summary>
         /// 
         /// </summary>
-        public TaskLevel Level { get; set; }
+        public TaskLevel TaskLevel { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public TaskState State { get; set; }
+        public TaskCategory TaskCategory { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public TaskCategory Category { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public RepeatMode Mode { get; set; }
+        public RepeatMode RepeatMode { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -78,7 +75,7 @@ namespace SimpleTaskSystem.Tasks.Dtos
         /// <summary>
         /// 
         /// </summary>
-        [Required]
+        //[Required]
         public string RemindTime { get; set; }
 
         public override string ToString()

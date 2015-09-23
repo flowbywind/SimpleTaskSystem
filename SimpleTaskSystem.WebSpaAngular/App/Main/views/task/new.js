@@ -14,18 +14,19 @@
             vm.localize = abp.localization.getSource('SimpleTaskSystem');
             vm.task = {
                 id: 0,
-                title: "",
+                title: '',
                 description: '',
-                tasklevel: '',
-                begintime: '',
-                endtime: '',
-                taskcategory: '',
-                repeatmode: '',
-                frequency: '',
-                repeatdays: '',
-                repeattype: '',
-                remindtype: '',
-                remindtime: '',
+                taskLevel: null,
+                beginTime: null,
+                endTime: null,
+                taskCategory: null,
+                repeatMode: null,
+                frequency: 0,
+                repeatDays: 0,
+                repeatType: null,
+                remindType: null,
+                remindTime: null,
+                taskState: null,
                 assignedPersonId: null
             };
 
@@ -40,34 +41,40 @@
             enumService.getSelectList({
                 enumType: "TaskLevel"
             }).success(function (data) {
-                vm.level = data.enums;
+                vm.taskLevel = data.enums;
             });
             //任务类别
             enumService.getSelectList({
                 enumType: "TaskCategory"
             }).success(function (data) {
-                vm.category = data.enums;
+                vm.taskCategory = data.enums;
             });
             //重复模式
             enumService.getSelectList({
                 enumType: "RepeatMode"
             }).success(function (data) {
-                vm.repeatmode = data.enums;
+                vm.repeatMode = data.enums;
             });
             //重复方式
             enumService.getSelectList({
                 enumType: "RepeatType"
             }).success(function (data) {
-                vm.repeattype = data.enums;
+                vm.repeatType = data.enums;
             });
             //提醒方式
             enumService.getSelectList({
                 enumType: "RemindType"
             }).success(function (data) {
-                vm.remindtype = data.enums;
+                vm.remindType = data.enums;
+            });
+            //提醒方式
+            enumService.getSelectList({
+                enumType: "RemindType"
+            }).success(function (data) {
+                vm.taskState = data.enums;
             });
 
-            $('.date').datetimepicker({
+            $('div.date').datetimepicker({
                 language: 'zh-CN',
                 weekStart: 1,
                 todayBtn: 1,
@@ -76,7 +83,13 @@
                 startView: 2,
                 forceParse: 0,
                 showMeridian: 1,
-                format: "yyyy-mm-dd hh:ii:ss"
+                format: "yyyy-mm-dd hh:ii"
+            }).on("hide", function () {
+                var $this = $(this);
+                var _this = this;
+                $scope.$apply(function () {
+                    $scope[$this.attr('ng-model')] = _this.value;
+                });
             });
 
             if ($stateParams.id > 0)
@@ -86,7 +99,7 @@
                     vm.task = data;
                 });
 
-            vm.saveTask = function () {
+            vm.createTask = function () {
                 abp.ui.setBusy(
                     null,
                     taskService.createTask(
@@ -94,7 +107,6 @@
                     ).success(function () {
                         abp.notify.info(abp.utils.formatString(localize("TaskCreatedMessage"), vm.task.description));
                         $location.path('/');
-
                     })
                 );
             };
@@ -106,7 +118,6 @@
                     ).success(function () {
                         abp.notify.info(vm.localize('TaskUpdatedMessage'));
                         $location.path('/');
-
                     })
                 );
             };

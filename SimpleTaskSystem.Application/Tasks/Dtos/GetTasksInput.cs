@@ -5,7 +5,7 @@ namespace SimpleTaskSystem.Tasks.Dtos
 {
     public class GetTasksInput : IInputDto
     {
-        public TaskState? State { get; set; }
+        public TaskState? TaskState { get; set; }
 
         public int? AssignedPersonId { get; set; }
     }

@@ -22,13 +22,13 @@
     <!-- Task list -->
     <ul class="list-group" ng-repeat="task in vm.tasks">
         <div class="list-group-item">
-            <span class="task-state-icon glyphicon" ng-click="vm.changeTaskState(task)" ng-class="{'glyphicon-minus': task.state == 1, 'glyphicon-ok': task.state == 2}"></span>
-            <span title="{{task.title}}" ng-class="{'task-description-active': task.state == 1, 'task-description-completed': task.state == 2 }">
+            <span class="task-state-icon glyphicon" ng-click="vm.changeTaskState(task)" ng-class="{'glyphicon-minus': task.taskState == 1, 'glyphicon-ok': task.taskState == 2}"></span>
+            <span title="{{task.title}}" ng-class="{'task-description-active': task.taskState == 1, 'task-description-completed': task.taskState == 2 }">
                 <a ng-href="#/detail/{{task.id}}" href="javascript:void(0)"> {{task.title|subString:'35'}}</a>
             </span>
             <br/>
             <span title="{{task.description}}" style="margin-left: 20px;">
-                <a ng-href="#/detail/{{task.id}}" href="javascript:void(0)"> {{task.description|subString:'100'}}</a>
+                 {{task.description|subString:'100'}}
             </span>
             <br />
             <span ng-show="task.assignedPersonId">
@@ -39,7 +39,7 @@
                 @L("View")
             </a>
             <a class="btn btn-sm btn-link pull-right" ng-href="#/new/{{task.id}}">
-                {{task.state==1?'@L("Edit")':''}}
+                {{task.taskState==1?'@L("Edit")':''}}
             </a>
         </div>
     </ul>
