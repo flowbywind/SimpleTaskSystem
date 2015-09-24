@@ -200,6 +200,7 @@
     <Content Include="App\Main\Enum.js" />
     <Content Include="App\Main\filters\moment_filters.js" />
     <Content Include="App\Main\filters\substring_filters.js" />
+    <Content Include="App\Main\filters\timeformat_filters.js" />
     <Content Include="App\Main\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>

@@ -1,83 +1,114 @@
-﻿<div class="container" ng-controller="sts.views.task.new as vm">
+﻿<div ng-controller="sts.views.task.new as vm">
     <form id="NewTaskForm" role="form" class="form-horizontal" name="newTaskForm" novalidate>
         <div class="form-group">
-            <label for="Title">@L("Title")</label>
-            <input id="Title" ng-model="vm.task.title" class="form-control" placeholder="@L("EnterTitleHere")" required />
-        </div>
-        <div class="form-group">
-            <label for="TaskDescription">@L("TaskDescription")</label>
-            <textarea id="TaskDescription" ng-model="vm.task.description" class="form-control" rows="3" placeholder="@L("EnterDescriptionHere")" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="TaskLevel">@L("TaskLevel")</label>
-            <select id="TaskLevel" class="form-control" ng-model="vm.task.taskLevel"
-                    ng-options="x.value as x.text for x in vm.taskLevel"></select>
-        </div>
-        <div class="form-group">
-            <label for="dtp_begintime">@L("BeginTime")</label>
-            <div class="input-group date col-md-3" data-date-format="p" data-link-field="dtp_begintime">
-                <input class="form-control" size="16" type="text" value="" readonly>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+            <label class="control-label col-md-1" for="Title">@L("Title")</label>
+            <div class="col-md-9">
+                <input id="Title" ng-model="vm.task.title" class="form-control" placeholder="@L("EnterTitleHere")" required />
             </div>
-            <input type="hidden" id="dtp_begintime" ng-model="vm.task.beginTime" /><br />
         </div>
         <div class="form-group">
-            <label for="dtp_endtime">@L("EndTime")</label>
-            <div class="input-group date col-md-3" data-date-format="p" data-link-field="dtp_endtime">
-                <input class="form-control" size="16" type="text" value="" readonly>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+            <label class="control-label col-md-1" for="TaskDescription">@L("TaskDescription")</label>
+            <div class="col-md-9">
+                <textarea id="TaskDescription" ng-model="vm.task.description" class="form-control" rows="3" placeholder="@L("EnterDescriptionHere")" required></textarea>
             </div>
-            <input type="hidden" id="dtp_endtime" ng-model="vm.task.endTime" /><br />
         </div>
         <div class="form-group">
-            <label for="TaskCategory">@L("TaskCategory")</label>
-            <select id="TaskCategory" class="form-control" ng-model="vm.task.taskCategory"
-                    ng-options="x.value as x.text for x in vm.taskCategory"></select>
-        </div>
-        <div class="form-group">
-            <label for="RepeatMode">@L("RepeatMode")</label>
-            <select id="RepeatMode" class="form-control" ng-model="vm.task.repeatMode"
-                    ng-options="x.value as x.text for x in vm.repeatMode"></select>
-        </div>
-        <div class="form-group">
-            <label for="Frequency">@L("Frequency")</label>
-            <input id="Frequency" ng-model="vm.task.frequency" class="form-control" placeholder="@L("Frequency")" />
-        </div>
-        <div class="form-group">
-            <label for="RepeatDays">@L("RepeatDays")</label>
-            <input id="RepeatDays" ng-model="vm.task.repeatDays" class="form-control" placeholder="@L("RepeatDays")" />
-        </div>
-        <div class="form-group">
-            <label for="RepeatType">@L("RepeatType")</label>
-            <select id="RepeatType" class="form-control" ng-model="vm.task.repeatType"
-                    ng-options="x.value as x.text for x in vm.repeatType"></select>
-        </div>
-        <div class="form-group">
-            <label for="RemindType">@L("RemindType")</label>
-            <select id="RemindType" class="form-control" ng-model="vm.task.remindType"
-                    ng-options="x.value as x.text for x in vm.remindType"></select>
-        </div>
-        <div class="form-group">
-            <label for="dtp_remindtime">@L("RemindTime")</label>
-            <div class="input-group date col-md-3" data-date-format="p" data-link-field="dtp_remindtime">
-                <input class="form-control" size="16" type="text" value="" readonly>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+            <label class="control-label col-md-1" for="dtp_begintime">@L("BeginTime")</label>
+            <div class="col-md-3">
+                <div class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_begintime">
+                    <input class="form-control" size="16" type="text" value="{{vm.task.beginTime|timeformat:'yyyy-MM-dd HH:mm'}}" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+                <input type="hidden" id="dtp_begintime" ng-model="vm.task.beginTime" />
             </div>
-            <input type="hidden" id="dtp_remindtime" ng-model="vm.task.remindTime" /><br />
+            <label class="control-label col-md-offset-2 col-md-1" for="dtp_endtime">@L("EndTime")</label>
+            <div class="col-md-3">
+                <div class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_endtime">
+                    <input class="form-control" size="16" type="text" value="{{vm.task.endTime|timeformat:'yyyy-MM-dd HH:mm'}}" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+                <input type="hidden" id="dtp_endtime" ng-model="vm.task.endTime" />
+            </div>
         </div>
         <div class="form-group">
-            <label for="TaskAssignedPerson">@L("AssignTo")</label>
-            <select id="TaskAssignedPerson" class="form-control" ng-model="vm.task.assignedPersonId" ng-options="person.id as person.name for person in vm.people">
-                <option value="">@L("SelectPerson")</option>
-            </select>
+            <label class="control-label col-md-1" for="TaskLevel">@L("TaskLevel")</label>
+            <div class="col-md-3">
+                <select id="TaskLevel" class="form-control" ng-model="vm.task.taskLevel"
+                        ng-options="x.value as x.text for x in vm.taskLevel"></select>
+            </div>
+            <label class="control-label col-md-offset-2 col-md-1" for="TaskCategory">@L("TaskCategory")</label>
+            <div class="col-md-3">
+                <select id="TaskCategory" class="form-control" ng-model="vm.task.taskCategory"
+                        ng-options="x.value as x.text for x in vm.taskCategory"></select>
+            </div>
         </div>
         <div class="form-group">
-            <label for="TaskState">@L("TaskCategory")</label>
-            <select id="TaskState" class="form-control" ng-model="vm.task.taskState"
-                    ng-options="x.value as x.text for x in vm.taskState"></select>
+            <label class="control-label col-md-1" for="RepeatMode">@L("RepeatMode")</label>
+            <div class="col-md-3">
+                <select id="RepeatMode" class="form-control" ng-model="vm.task.repeatMode"
+                        ng-options="x.value as x.text for x in vm.repeatMode"></select>
+            </div>
+            <label class="control-label col-md-1 col-md-offset-2" for="Frequency">@L("Frequency")</label>
+            <div class="col-md-2">
+                <input id="Frequency" ng-model="vm.task.frequency" class="form-control" placeholder="@L("Frequency")" />
+            </div>
+            <label class="control-label">{{vm.repeatMode[vm.task.repeatMode-1].text.substr(1)}}重复一次</label>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-1" for="RepeatDays">@L("RepeatDays")</label>
+            <div class="col-md-3">
+                <ul style="style">
+                    <li>周一</li>
+                    <li>周二</li>
+                    <li>周三</li>
+                    <li>周四</li>
+                    <li>周五</li>
+                    <li>周六</li>
+                    <li>周日</li>
+                </ul>
+                <input id="RepeatDays" ng-model="vm.task.repeatDays" class="form-control hidden" placeholder="@L("RepeatDays")" />
+            </div>
+            <label class="control-label col-md-1 col-md-offset-2" for="RepeatType">@L("RepeatType")</label>
+            <div class="col-md-3">
+                <select id="RepeatType" class="form-control" ng-model="vm.task.repeatType"
+                        ng-options="x.value as x.text for x in vm.repeatType"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1" for="RemindType">@L("RemindType")</label>
+            <div class="col-md-3">
+                <select id="RemindType" class="form-control" ng-model="vm.task.remindType"
+                        ng-options="x.value as x.text for x in vm.remindType"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1" for="dtp_remindtime">@L("RemindTime")</label>
+            <div class="col-md-3">
+                <div class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_remindtime">
+                    <input class="form-control" size="16" type="text" value="{{vm.task.remindTime|timeformat:'yyyy-MM-dd HH:mm'}}" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+                <input type="hidden" id="dtp_remindtime" ng-model="vm.task.remindTime" /><br />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1" for="TaskAssignedPerson">@L("AssignTo")</label>
+            <div class="col-md-3">
+                <select id="TaskAssignedPerson" class="form-control" ng-model="vm.task.assignedPersonId" ng-options="person.id as person.name for person in vm.people">
+                    <option value="">@L("SelectPerson")</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1" for="TaskState">@L("TaskCategory")</label>
+            <div class="col-md-3">
+                <select id="TaskState" class="form-control" ng-model="vm.task.taskState"
+                        ng-options="x.value as x.text for x in vm.taskState"></select>
+            </div>
         </div>
         <input type="hidden" value="{{vm.task.id}}" />
         <br />
@@ -85,7 +116,8 @@
         <br />
         <div class="navbar-fixed-bottom text-center" style="background-color: #f5f5f5; border: 1px solid #d3d3d3; padding: 5px; margin: 0 89px;">
             <button ng-click="vm.task.id==0?vm.createTask():vm.updateTask()" ng-disabled="newTaskForm.$invalid" type="submit"
-                    class="btn btn-primary">
+                    class="btn btn-primary"
+                    ng-class="{'block': vm.task.taskState == 1, 'hidden': vm.task.taskState == 2 }">
                 @L("Save")
             </button>
             &nbsp;&nbsp;&nbsp;&nbsp;

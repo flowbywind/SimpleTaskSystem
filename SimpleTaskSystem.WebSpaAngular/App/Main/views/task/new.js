@@ -17,15 +17,15 @@
                 title: '',
                 description: '',
                 taskLevel: null,
-                beginTime: null,
-                endTime: null,
+                beginTime: '',
+                endTime: '',
                 taskCategory: null,
                 repeatMode: null,
                 frequency: 0,
                 repeatDays: 0,
                 repeatType: null,
                 remindType: null,
-                remindTime: null,
+                remindTime: '',
                 taskState: null,
                 assignedPersonId: null
             };
@@ -67,9 +67,9 @@
             }).success(function (data) {
                 vm.remindType = data.enums;
             });
-            //提醒方式
+            //任务状态
             enumService.getSelectList({
-                enumType: "RemindType"
+                enumType: "TaskState"
             }).success(function (data) {
                 vm.taskState = data.enums;
             });
@@ -83,14 +83,16 @@
                 startView: 2,
                 forceParse: 0,
                 showMeridian: 1,
+                initialDate: new Date(),
                 format: "yyyy-mm-dd hh:ii"
             }).on("hide", function () {
-                var $this = $(this);
-                var _this = this;
+                var $this = $(this).next().attr('ng-model');
+                var _this = $(this).children()[0];
+                var arr = $this.split('.');
                 $scope.$apply(function () {
-                    $scope[$this.attr('ng-model')] = _this.value;
+                    $scope[arr[0]][arr[1]][arr[2]] = _this.value;
                 });
-            });
+            }).datetimepicker('update', new Date());
 
             if ($stateParams.id > 0)
                 taskService.getTaskById({
