@@ -38,6 +38,11 @@
                     url: '/detail/:id',
                     templateUrl: '/App/Main/views/task/detail.cshtml',
                     menu: 'TaskList' //Matches to name of 'TaskList' menu in SimpleTaskSystemNavigationProvider
+                })
+                .state('login', {
+                    url: '/login',
+                    templateUrl: '/App/Main/views/account/login.cshtml',
+                    menu: 'TaskList' //Matches to name of 'TaskList' menu in SimpleTaskSystemNavigationProvider
                 });
         }
     ]);

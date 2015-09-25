@@ -16,11 +16,11 @@
                 id: 0,
                 title: '',
                 description: '',
-                taskLevel: null,
+                taskLevel: 0,
                 beginTime: '',
                 endTime: '',
-                taskCategory: null,
-                repeatMode: null,
+                taskCategory: 1,
+                repeatMode: 1,
                 frequency: 0,
                 repeatDays: 0,
                 repeatType: null,
@@ -93,6 +93,24 @@
                     $scope[arr[0]][arr[1]][arr[2]] = _this.value;
                 });
             }).datetimepicker('update', new Date());
+
+            //选择重复日
+            $("#ulRepeatDays li").click(function () {
+                var $this = $(this).find("a").eq(0);
+                var value = $(this).data("value");
+                var $repeatDays = $("#RepeatDays");
+                var values = $repeatDays.val();
+                if ($this.hasClass("active")) {
+                    $this.removeClass("active");
+                    values = values.replace(value + ",", "");
+                } else {
+                    $this.addClass("active");
+                    values = values + value + ",";
+                }
+                $scope.$apply(function () {
+                    $scope.vm.task.repeatDays = values;
+                });
+            });
 
             if ($stateParams.id > 0)
                 taskService.getTaskById({

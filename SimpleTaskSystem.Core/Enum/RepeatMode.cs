@@ -14,11 +14,11 @@ namespace SimpleTaskSystem.Enum
         /// </summary>
         [EnumDisplayName("按周")]
         Week = 2,
-        /// <summary>
-        /// 工作日
-        /// </summary>
-        [EnumDisplayName("工作日")]
-        Weekdays = 3,
+        ///// <summary>
+        ///// 工作日
+        ///// </summary>
+        //[EnumDisplayName("工作日")]
+        //Weekdays = 3,
         /// <summary>
         /// 月
         /// </summary>

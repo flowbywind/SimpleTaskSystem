@@ -44,7 +44,7 @@
                         ng-options="x.value as x.text for x in vm.taskCategory"></select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'hidden':vm.task.taskCategory==1}">
             <label class="control-label col-md-1" for="RepeatMode">@L("RepeatMode")</label>
             <div class="col-md-3">
                 <select id="RepeatMode" class="form-control" ng-model="vm.task.repeatMode"
@@ -56,22 +56,43 @@
             </div>
             <label class="control-label">{{vm.repeatMode[vm.task.repeatMode-1].text.substr(1)}}重复一次</label>
         </div>
-
-        <div class="form-group">
+        <div class="form-group" ng-class="{'hidden':vm.task.taskCategory==1}">
             <label class="control-label col-md-1" for="RepeatDays">@L("RepeatDays")</label>
-            <div class="col-md-3">
-                <ul style="style">
-                    <li>周一</li>
-                    <li>周二</li>
-                    <li>周三</li>
-                    <li>周四</li>
-                    <li>周五</li>
-                    <li>周六</li>
-                    <li>周日</li>
+            <div class="col-md-5">
+                <ul id="ulRepeatDays" class="list-unstyled list-group">
+                    <li class="pull-left" data-value="1">
+                        <a href="javascript:void(0)" class="list-group-item"
+                           ng-class="{'active':vm.task.repeatDays.indexOf('1')>=0}">周一</a>
+                    </li>
+                    {{vm.task.repeatDays.contains(1)}}
+                    <li class="pull-left" data-value="2">
+                        <a href="javascript:void(0)" class="list-group-item"
+                           ng-class="{'active':vm.task.repeatDays.indexOf('2')>=0}">周二</a>
+                    </li>
+                    <li class="pull-left" data-value="3">
+                        <a href="javascript:void(0)" class="list-group-item"
+                           ng-class="{'active':vm.task.repeatDays.indexOf('3')>=0}">周三</a>
+                    </li>
+                    <li class="pull-left" data-value="4">
+                        <a href="javascript:void(0)" class="list-group-item"
+                           ng-class="{'active':vm.task.repeatDays.indexOf('4')>=0}">周四</a>
+                    </li>
+                    <li class="pull-left" data-value="5">
+                        <a href="javascript:void(0)" class="list-group-item"
+                           ng-class="{'active':vm.task.repeatDays.indexOf('5')>=0}">周五</a>
+                    </li>
+                    <li class="pull-left" data-value="6">
+                        <a href="javascript:void(0)" class="list-group-item"
+                           ng-class="{'active':vm.task.repeatDays.indexOf('6')>=0}">周六</a>
+                    </li>
+                    <li class="pull-left" data-value="7">
+                        <a href="javascript:void(0)" class="list-group-item"
+                           ng-class="{'active':vm.task.repeatDays.indexOf('7')>=0}">周日</a>
+                    </li>
                 </ul>
                 <input id="RepeatDays" ng-model="vm.task.repeatDays" class="form-control hidden" placeholder="@L("RepeatDays")" />
             </div>
-            <label class="control-label col-md-1 col-md-offset-2" for="RepeatType">@L("RepeatType")</label>
+            <label class="control-label col-md-1 col-md-offset-0" for="RepeatType">@L("RepeatType")</label>
             <div class="col-md-3">
                 <select id="RepeatType" class="form-control" ng-model="vm.task.repeatType"
                         ng-options="x.value as x.text for x in vm.repeatType"></select>
@@ -83,16 +104,14 @@
                 <select id="RemindType" class="form-control" ng-model="vm.task.remindType"
                         ng-options="x.value as x.text for x in vm.remindType"></select>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-1" for="dtp_remindtime">@L("RemindTime")</label>
+            <label class="control-label col-md-1 col-md-offset-2" for="dtp_remindtime">@L("RemindTime")</label>
             <div class="col-md-3">
                 <div class="input-group date" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_remindtime">
                     <input class="form-control" size="16" type="text" value="{{vm.task.remindTime|timeformat:'yyyy-MM-dd HH:mm'}}" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                 </div>
-                <input type="hidden" id="dtp_remindtime" ng-model="vm.task.remindTime" /><br />
+                <input type="hidden" id="dtp_remindtime" ng-model="vm.task.remindTime" />
             </div>
         </div>
         <div class="form-group">
@@ -102,9 +121,7 @@
                     <option value="">@L("SelectPerson")</option>
                 </select>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-1" for="TaskState">@L("TaskCategory")</label>
+            <label class="control-label col-md-1 col-md-offset-2" for="TaskState">@L("TaskCategory")</label>
             <div class="col-md-3">
                 <select id="TaskState" class="form-control" ng-model="vm.task.taskState"
                         ng-options="x.value as x.text for x in vm.taskState"></select>
