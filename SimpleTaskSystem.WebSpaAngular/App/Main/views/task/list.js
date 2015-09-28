@@ -3,7 +3,7 @@
 
     var controllerId = 'sts.views.task.list';
     app.controller(controllerId, [
-        '$scope','abp.services.tasksystem.task',
+        '$scope', 'abp.services.tasksystem.task',
         function ($scope, taskService) {
             var vm = this;
 
@@ -27,7 +27,6 @@
                     })
                 );
             };
-
             vm.changeTaskState = function (task) {
                 var newState;
                 if (task.taskState == 1) {

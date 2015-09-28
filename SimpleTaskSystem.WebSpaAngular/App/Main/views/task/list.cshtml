@@ -1,13 +1,49 @@
-﻿<div class="panel panel-default" ng-controller="sts.views.task.list as vm">
-
+﻿<div>
+    <button class="btn btn-primary" data-toggle="modal"
+            data-target="#myModal">
+        新建
+    </button>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 900px; font-size: 12px;">
+            <div class="modal-content" ng-controller="sts.views.task.new as vm">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h6 class="modal-title" id="myModalLabel">
+                        任务内容
+                    </h6>
+                </div>
+                <div class="modal-body">
+                    <div ng-include="'/App/Main/views/task/new.cshtml'"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"
+                            data-dismiss="modal">
+                        关闭
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button ng-click="vm.task.id==0?vm.createTask():vm.updateTask()"
+                            ng-disabled="newTaskForm.$invalid"
+                            type="submit" class="btn btn-primary"
+                            ng-class="{'block': vm.task.taskState == 1, 'hidden': vm.task.taskState == 2 }">
+                        @L("Save")
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+<div class="panel panel-default" ng-controller="sts.views.task.list as vm">
     <div class="panel-heading" style="position: relative;">
         <div class="row">
-
             <!-- Title -->
             <h3 class="panel-title col-xs-6">
                 @L("TaskList") - <span>{{vm.getTaskCountText()}}</span>
             </h3>
-
             <!-- Task state combobox -->
             <div class="col-xs-6 text-right">
                 <select ng-model="selectedTaskState">
@@ -18,7 +54,6 @@
             </div>
         </div>
     </div>
-
     <!-- Task list -->
     <ul class="list-group" ng-repeat="task in vm.tasks">
         <div class="list-group-item">
@@ -26,9 +61,9 @@
             <span title="{{task.title}}" ng-class="{'task-description-active': task.taskState == 1, 'task-description-completed': task.taskState == 2 }">
                 <a ng-href="#/detail/{{task.id}}" href="javascript:void(0)"> {{task.title|subString:'35'}}</a>
             </span>
-            <br/>
+            <br />
             <span title="{{task.description}}" style="margin-left: 20px;">
-                 {{task.description|subString:'100'}}
+                {{task.description|subString:'100'}}
             </span>
             <br />
             <span ng-show="task.assignedPersonId">
@@ -38,7 +73,11 @@
             <a class="btn btn-sm btn-link pull-right" ng-href="#/detail/{{task.id}}">
                 @L("View")
             </a>
-            <a class="btn btn-sm btn-link pull-right" ng-href="#/new/{{task.id}}">
+            <a class="btn btn-sm btn-link pull-right"
+               @*ng-href="#/new/{{task.id}}"*@
+               href="/App/Main/views/task/new.cshtml"
+               data-toggle="modal"
+               data-target="#myModal">
                 {{task.taskState==1?'@L("Edit")':''}}
             </a>
         </div>

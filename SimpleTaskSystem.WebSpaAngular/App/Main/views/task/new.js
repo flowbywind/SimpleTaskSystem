@@ -22,11 +22,11 @@
                 taskCategory: 1,
                 repeatMode: 1,
                 frequency: 0,
-                repeatDays: 0,
-                repeatType: null,
-                remindType: null,
+                repeatDays: "",
+                repeatType: 1,
+                remindType: 1,
                 remindTime: '',
-                taskState: null,
+                taskState: 1,
                 assignedPersonId: null
             };
 
@@ -92,12 +92,12 @@
                 $scope.$apply(function () {
                     $scope[arr[0]][arr[1]][arr[2]] = _this.value;
                 });
-            }).datetimepicker('update', new Date());
+            }).datetimepicker('update', '');
+
 
             //选择重复日
-            $("#ulRepeatDays li").click(function () {
-                var $this = $(this).find("a").eq(0);
-                var value = $(this).data("value");
+            vm.RepeatDaysClick = function (event, value) {
+                var $this = $(event.toElement).eq(0);
                 var $repeatDays = $("#RepeatDays");
                 var values = $repeatDays.val();
                 if ($this.hasClass("active")) {
@@ -110,7 +110,7 @@
                 $scope.$apply(function () {
                     $scope.vm.task.repeatDays = values;
                 });
-            });
+            }
 
             if ($stateParams.id > 0)
                 taskService.getTaskById({
@@ -140,9 +140,6 @@
                         $location.path('/');
                     })
                 );
-            };
-            vm.returnList = function () {
-                $location.path('/');
             };
         }
     ]);
